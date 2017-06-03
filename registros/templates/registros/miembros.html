@@ -1,0 +1,11 @@
+<h1>Listado de Miembros</h1>
+
+{% if latest_miembros_list %}
+<ul>
+    {% for miembro in latest_miembros_list %}
+    <li><a href="{% url 'registros:miembro_detail' miembro.id %}">{{ miembro }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No hay miembros registrados.</p>
+{% endif %}

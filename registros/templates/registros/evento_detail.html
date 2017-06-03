@@ -1,0 +1,11 @@
+<h1>{{ evento }}</h1>
+
+{% if evento.miembros.count > 0 %}
+    {% for miembro in evento.miembros.all %}
+    <ul>
+        <li>{{ miembro }}</li>
+    </ul>
+    {% endfor %}
+{% else %}
+<p>No hay miembros registrados en este evento.</p>
+{% endif %}

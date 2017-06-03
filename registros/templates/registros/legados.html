@@ -1,0 +1,11 @@
+<h1>Lista de Legados</h1>
+
+{% if latest_legados_list %}
+<ul>
+    {% for legado in latest_legados_list %}
+    <li><a href="{% url 'registros:legado_detail' legado.id %}">{{ legado }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No hay legados registrados.</p>
+{% endif %}
