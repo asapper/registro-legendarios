@@ -1,1 +1,27 @@
 <h1>{{ miembro }}</h1>
+<img style="height: 200px; width: 200px;" src="{{ miembro.foto.url }}" />
+
+<ul>
+    <li><strong>Fecha de nacimiento:</strong> {{ miembro.fecha_de_nacimiento }}</li>
+    <li><strong>Correo electrónico:</strong> {{ miembro.correo }}</li>
+    <li><strong>Teléfono:</strong> {{ miembro.telefono }}</li>
+    <li><strong>Tipo de Sangre:</strong> {{ miembro.tipo_de_sangre }}</li>
+    <li><strong>Estado Civíl:</strong> {{ miembro.estado_civil }}</li>
+    <li><strong>País:</strong> {{ miembro.pais }}</li>
+    <li><strong>Número de Legendario:</strong> {{ miembro.numero_de_legendario }}</li>
+    <li><strong>Testimonio:</strong> {{ miembro.testimonio }}</li>
+    <li><strong>Estatus:</strong> {{ miembro.estatus }}</li>
+</ul>
+
+<h4>Badges</h4>
+
+<h4>Eventos atendidos</h4>
+{% if miembro.participacion_set.count > 0 %}
+<ul>
+    {% for participacion in miembro.participacion_set.all %}
+    <li><strong>{{ participacion.evento }}:</strong> {{ participacion.rol }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No ha participado en eventos.</p>
+{% endif %}
