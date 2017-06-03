@@ -54,6 +54,7 @@ class Evento(models.Model):
     fecha = models.DateField()
     pais = models.CharField(max_length=100)
     localidad = models.CharField(max_length=100)
+    badge = models.ImageField(upload_to="eventos/")
     miembros = models.ManyToManyField(Miembro, through='Participacion')
 
     def __str__(self):

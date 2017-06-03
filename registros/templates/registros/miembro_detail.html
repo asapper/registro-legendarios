@@ -14,6 +14,15 @@
 </ul>
 
 <h4>Badges</h4>
+{% if miembro.participacion_set.count > 0 %}
+<ul>
+    {% for participacion in miembro.participacion_set.all %}
+    <li><img style="height: 100px;, width: 100px;" src="{{ participacion.evento.badge.url }}" /></li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No ha obtenido ningún badge.</p>
+{% endif %}
 
 <h4>Eventos atendidos</h4>
 {% if miembro.participacion_set.count > 0 %}
