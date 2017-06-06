@@ -1,3 +1,6 @@
+{% extends 'base_site.html' %}
+
+{% block content %}
 <h1>Lista de Legados</h1>
 
 {% if latest_legados_list %}
@@ -9,3 +12,4 @@
 {% else %}
 <p>No hay legados registrados.</p>
 {% endif %}
+{% endblock %}

@@ -1,3 +1,6 @@
+{% extends 'base_site.html' %}
+
+{% block content %}
 <h1>Listado de Miembros</h1>
 
 {% if latest_miembros_list %}
@@ -9,3 +12,4 @@
 {% else %}
 <p>No hay miembros registrados.</p>
 {% endif %}
+{% endblock %}

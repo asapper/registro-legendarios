@@ -1,6 +1,9 @@
+{% extends 'base_site.html' %}
+
+{% block content %}
 <h1>{{ evento }}</h1>
 
-<img style="height: 200px; width: 200px;" src="{{ evento.badge.url }}" />
+<img class="foto-badge" src="{{ evento.badge.url }}" />
 
 {% if evento.participacion_set.count > 0 %}
     <h4>Miembros:</h4>
@@ -12,3 +15,4 @@
 {% else %}
 <p>No hay miembros registrados en este evento.</p>
 {% endif %}
+{% endblock %}

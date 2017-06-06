@@ -1,3 +1,6 @@
+{% extends 'base_site.html' %}
+
+{% block content %}
 <h1>Eventos</h1>
 
 {% if latest_eventos_list %}
@@ -9,3 +12,4 @@
 {% else %}
 <p>No hay eventos registrados.</p>
 {% endif %}
+{% endblock %}

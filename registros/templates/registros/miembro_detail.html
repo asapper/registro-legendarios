@@ -1,5 +1,9 @@
+{% extends 'base_site.html' %}
+
+{% block content %}
 <h1>{{ miembro }}</h1>
-<img style="height: 200px; width: 200px;" src="{{ miembro.foto.url }}" />
+<img class="foto-miembro" src="{{ miembro.foto.url }}" />
+<hr>
 
 <ul>
     <li><strong>Fecha de nacimiento:</strong> {{ miembro.fecha_de_nacimiento }}</li>
@@ -12,17 +16,19 @@
     <li><strong>Testimonio:</strong> {{ miembro.testimonio }}</li>
     <li><strong>Estatus:</strong> {{ miembro.estatus }}</li>
 </ul>
+<hr>
 
 <h4>Badges</h4>
 {% if miembro.participacion_set.count > 0 %}
 <ul>
     {% for participacion in miembro.participacion_set.all %}
-    <li><img style="height: 100px;, width: 100px;" src="{{ participacion.evento.badge.url }}" /></li>
+    <li><img class="foto-badge" src="{{ participacion.evento.badge.url }}" /></li>
     {% endfor %}
 </ul>
 {% else %}
 <p>No ha obtenido ningún badge.</p>
 {% endif %}
+<hr>
 
 <h4>Eventos atendidos</h4>
 {% if miembro.participacion_set.count > 0 %}
@@ -34,3 +40,4 @@
 {% else %}
 <p>No ha participado en eventos.</p>
 {% endif %}
+{% endblock %}

@@ -1,3 +1,6 @@
+{% extends 'base_site.html' %}
+
+{% block content %}
 <h1>Registros de Legendarios</h1>
 
 <ul>
@@ -5,3 +8,4 @@
     <li><a href="{% url 'registros:miembros' %}"> Ver todos los miembros</a></li>
     <li><a href="{% url 'registros:legados' %}">Ver todos los miembros de Legado</a></li>
 </ul>
+{% endblock %}
