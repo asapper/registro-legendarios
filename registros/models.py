@@ -1,4 +1,7 @@
+from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 
 class Legado(models.Model):
@@ -23,6 +26,9 @@ class Miembro(models.Model):
         ('inactivo', 'Inactivo'),
     )
 
+    # referencia a login credentials
+    user = models.OneToOneField(User)
+    # datos de miembro
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
     fecha_de_nacimiento = models.DateField()
