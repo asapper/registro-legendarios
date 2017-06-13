@@ -9,9 +9,23 @@
 
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
+                {% if perms.registros.view_eventos %}
                 <li><a href="{% url 'registros:eventos' %}">Eventos</a></li>
+                {% endif %}
+                {% if perms.registros.view_all_miembros %}
                 <li><a href="{% url 'registros:miembros' %}">Miembros</a></li>
+                {% endif %}
+                {% if perms.registros.view_legados %}
                 <li><a href="{% url 'registros:legados' %}">Legados</a></li>
+                {% endif %}
+                
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                {% if perms.registros.view_miembro %}
+                <li><a href="{% url 'registros:miembro_detail' user.miembro.pk %}">Mi perfil</a></li>
+                {% endif %}
+                <li><a class="pull-right" href="{% url 'logout' %}">Logout</a></li>
             </ul>
         </div>
     </div>
