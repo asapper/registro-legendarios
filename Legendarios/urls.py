@@ -24,8 +24,8 @@ from . import views
 
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
     url(r'^admin/', admin.site.urls),
     url(r'^registros/', include('registros.urls')),
+    url(r'^$', views.index, name='index'),
     url('^', include('django.contrib.auth.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

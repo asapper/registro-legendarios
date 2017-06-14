@@ -31,16 +31,16 @@ class Miembro(models.Model):
     # datos de miembro
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
-    fecha_de_nacimiento = models.DateField()
-    correo = models.EmailField()
-    telefono = models.CharField(max_length=25)
-    foto = models.ImageField(upload_to="miembros/")
-    tipo_de_sangre = models.CharField(max_length=25)
-    estado_civil = models.CharField(max_length=50)
-    pais = models.CharField(max_length=100)
-    numero_de_legendario = models.PositiveIntegerField()
-    testimonio = models.TextField()
-    estatus = models.CharField(max_length=25, choices=OPCIONES_ESTATUS)
+    fecha_de_nacimiento = models.DateField(null=True)  # not required upon registration
+    correo = models.EmailField(unique=True)
+    telefono = models.CharField(max_length=25, default="")
+    foto = models.ImageField(upload_to="miembros/", null=True)
+    tipo_de_sangre = models.CharField(max_length=25, default="")
+    estado_civil = models.CharField(max_length=50, default="")
+    pais = models.CharField(max_length=100, default="")
+    numero_de_legendario = models.PositiveIntegerField(null=True)
+    testimonio = models.TextField(default="")
+    estatus = models.CharField(max_length=25, choices=OPCIONES_ESTATUS, default='activo')
 
     def __str__(self):
         return "{} {}".format(self.nombre, self.apellido)

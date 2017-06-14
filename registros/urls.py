@@ -7,6 +7,8 @@ app_name = 'registros'
 urlpatterns = [
     # ex: /registros/
     url(r'^$', views.IndexView.as_view(), name='index'),
+    # ex: /nuevo-miembro/
+    url(r'^nuevo-miembro/$', views.NuevoMiembroView.as_view(), name='nuevo-miembro'),
     # ex: /registros/home
     url(r'^home/$', views.home_view, name='home'),
     # ex: /registros/eventos/

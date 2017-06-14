@@ -3,15 +3,16 @@
 {% block content %}
 
 {% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
+<p>El usuario o contraseña está incorrecto. Intenta de nuevo.</p>
 {% endif %}
 
 {% if next %}
     {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
+    <p>Tu cuenta no tiene acceso a esta página. Para proceder,
+    por favor entra las credenciales de una cuenta que sí tenga
+    los accesos requeridos.</p>
     {% else %}
-    <p>Please login to see this page.</p>
+    <p>Por favor entra tus credenciales para ver esta página.</p>
     {% endif %}
 {% endif %}
 
@@ -19,7 +20,7 @@
     {% csrf_token %}
     <table>
         <tr>
-            <td>{{ form.username.label_tag }}</td>
+            <td><strong>Correo:</strong></td>
             <td>{{ form.username }}</td>
         </tr>
         <tr>
@@ -28,11 +29,11 @@
         </tr>
     </table>
 
-    <input type="submit" value="login" />
+    <input type="submit" value="Entrar" />
     <input type="hidden" name="next" value="{{ next }}" />
 </form>
 
-{# Assumes you setup the password_reset view in your URLconf #}
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+<p><a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a></p>
+<p><a href="{% url 'registros:nuevo-miembro' %}">Regístrate</a></p>
 
 {% endblock %}

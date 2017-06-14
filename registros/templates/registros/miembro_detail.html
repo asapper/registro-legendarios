@@ -2,18 +2,25 @@
 
 {% block content %}
 <h1>{{ miembro }}</h1>
+
+{% if user.miembro == miembro %}
+<a class="btn btn-primary">Edit</a>
+{% endif %}
+
+{% if miembro.foto %}
 <img class="foto-miembro" src="{{ miembro.foto.url }}" />
+{% endif %}
 <hr>
 
 <ul>
-    <li><strong>Fecha de nacimiento:</strong> {{ miembro.fecha_de_nacimiento }}</li>
+    <li><strong>Fecha de nacimiento:</strong> {{ miembro.fecha_de_nacimiento|default_if_none:"---" }}</li>
     <li><strong>Correo electrónico:</strong> {{ miembro.correo }}</li>
-    <li><strong>Teléfono:</strong> {{ miembro.telefono }}</li>
-    <li><strong>Tipo de Sangre:</strong> {{ miembro.tipo_de_sangre }}</li>
-    <li><strong>Estado Civíl:</strong> {{ miembro.estado_civil }}</li>
-    <li><strong>País:</strong> {{ miembro.pais }}</li>
-    <li><strong>Número de Legendario:</strong> {{ miembro.numero_de_legendario }}</li>
-    <li><strong>Testimonio:</strong> {{ miembro.testimonio }}</li>
+    <li><strong>Teléfono:</strong> {{ miembro.telefono|default:"---" }}</li>
+    <li><strong>Tipo de Sangre:</strong> {{ miembro.tipo_de_sangre|default:"---" }}</li>
+    <li><strong>Estado Civíl:</strong> {{ miembro.estado_civil|default:"---" }}</li>
+    <li><strong>País:</strong> {{ miembro.pais|default:"---" }}</li>
+    <li><strong>Número de Legendario:</strong> {{ miembro.numero_de_legendario|default_if_none:"---" }}</li>
+    <li><strong>Testimonio:</strong> {{ miembro.testimonio|default:"---" }}</li>
     <li><strong>Estatus:</strong> {{ miembro.estatus }}</li>
 </ul>
 <hr>
@@ -26,7 +33,7 @@
     {% endfor %}
 </ul>
 {% else %}
-<p>No ha obtenido ningún badge.</p>
+<p>No has obtenido ningún badge.</p>
 {% endif %}
 <hr>
 
@@ -38,6 +45,6 @@
     {% endfor %}
 </ul>
 {% else %}
-<p>No ha participado en eventos.</p>
+<p>No has participado en eventos.</p>
 {% endif %}
 {% endblock %}
