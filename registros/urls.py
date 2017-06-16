@@ -19,6 +19,8 @@ urlpatterns = [
     url(r'^miembros/$', views.MiembrosView.as_view(), name='miembros'),
     # ex: /registros/miembros/1/
     url(r'^miembros/(?P<pk>[0-9]+)/$', views.MiembroDetailView.as_view(), name='miembro_detail'),
+    # ex: /registros/miembros/1/editar
+    url(r'^miembros/(?P<pk>[0-9]+)/editar/$', views.MiembroUpdateView.as_view(), name='miembro_update'),
     # ex: /registros/legados/
     url(r'^legados/$', views.LegadosView.as_view(), name='legados'),
     # ex: /registros/legados/1/

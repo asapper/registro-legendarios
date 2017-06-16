@@ -4,7 +4,7 @@
 <h1>{{ miembro }}</h1>
 
 {% if user.miembro == miembro %}
-<a class="btn btn-primary">Edit</a>
+<a class="btn btn-primary" href="{% url 'registros:miembro_update' user.miembro.pk %}">Editar</a>
 {% endif %}
 
 {% if miembro.foto %}
