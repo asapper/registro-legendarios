@@ -1,8 +1,10 @@
+from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.mixins import (LoginRequiredMixin,
                                         UserPassesTestMixin,
                                         PermissionRequiredMixin)
 from django.contrib.auth.models import Group, User
+from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
@@ -77,10 +79,11 @@ class MiembrosView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
         return Miembro.objects.all()
 
 
-class NuevoMiembroView(FormView):
+class NuevoMiembroView(SuccessMessageMixin, FormView):
     template_name = 'registros/registro_nuevo_miembro.html'
     form_class = MiembroForm
     success_url = '/registros/'
+    success_message = 'Has sido registrado correctamente'
 
     def form_valid(self, form):
         """
@@ -104,12 +107,13 @@ class NuevoMiembroView(FormView):
         return super(NuevoMiembroView, self).form_valid(form)
 
 
-class MiembroUpdateView(LoginRequiredMixin, UpdateView):
+class MiembroUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Miembro
     fields = ['nombre', 'apellido', 'fecha_de_nacimiento', 'correo',
             'telefono', 'foto', 'tipo_de_sangre', 'estado_civil',
             'pais', 'testimonio']
     template_name_suffix = '_update_form'
+    success_message = 'El perfil de {} {} ha sido actualizado exitosamente.'
 
     def get_object(self):
         """
@@ -125,6 +129,11 @@ class MiembroUpdateView(LoginRequiredMixin, UpdateView):
         """Redirect back to Profile page."""
         return reverse('registros:miembro_detail',
                     kwargs={'pk': self.request.user.miembro.pk})
+
+    def get_success_message(self, cleaned_data):
+        return self.success_message.format(
+                cleaned_data['nombre'],
+                cleaned_data['apellido'])
 
 
 class MiembroDetailView(LoginRequiredMixin,
