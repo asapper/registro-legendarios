@@ -1,4 +1,5 @@
-import codecs, csv
+import codecs
+import csv
 
 from django.contrib import messages
 from django.contrib.auth import login
@@ -58,7 +59,7 @@ class EventoDetailView(LoginRequiredMixin,
         miembros_file = self.request.FILES['archivo_miembros']
         # lee csv y lo guarda en Dict
         reader = csv.DictReader(codecs.iterdecode(miembros_file, "utf-8"),
-                fieldnames=MainController.FIELDNAMES_CSV)
+                                fieldnames=MainController.FIELDNAMES_CSV)
         # handle creation/assigning of miembros
         object_pk = self.kwargs['pk']
         MainController.nuevos_miembros_csv(reader, object_pk)
@@ -83,8 +84,8 @@ class MiembrosView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
 class NuevoMiembroView(SuccessMessageMixin, FormView):
     template_name = 'registros/registro_nuevo_miembro.html'
     form_class = MiembroForm
-    success_url = '/registros/'
-    success_message = 'Has sido registrado correctamente'
+    success_message = 'Has sido registrado correctamente. Presiona "Editar" \
+            y llena la información restante de tu perfil.'
 
     def form_valid(self, form):
         """
@@ -94,14 +95,17 @@ class NuevoMiembroView(SuccessMessageMixin, FormView):
         user = MainController.create_new_miembro(form)
         # log user in
         login(self.request, user)
+        # override success url to new Miembro's profile page
+        self.success_url = reverse('registros:miembro_detail',
+                                   kwargs={'pk': user.miembro.pk})
         return super(NuevoMiembroView, self).form_valid(form)
 
 
 class MiembroUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Miembro
     fields = ['nombre', 'apellido', 'fecha_de_nacimiento', 'correo',
-            'telefono', 'foto', 'tipo_de_sangre', 'estado_civil',
-            'pais', 'testimonio', 'congregacion']
+              'telefono', 'foto', 'tipo_de_sangre', 'estado_civil',
+              'pais', 'testimonio', 'congregacion']
     template_name_suffix = '_update_form'
     success_message = 'Tu perfil ha sido actualizado exitosamente.'
 
@@ -118,7 +122,7 @@ class MiembroUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     def get_success_url(self):
         """Redirect back to Profile page."""
         return reverse('registros:miembro_detail',
-                    kwargs={'pk': self.request.user.miembro.pk})
+                       kwargs={'pk': self.request.user.miembro.pk})
 
 
 class MiembroDetailView(LoginRequiredMixin,
