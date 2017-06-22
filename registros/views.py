@@ -43,11 +43,7 @@ class EventosView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
 
     def get_queryset(self):
         """Return all Eventos."""
-        if MAYOR_ACCESO_GROUP in self.request.user.groups.all():
-            return Evento.objects.all()
-        else:
-            return Evento.objects.filter(
-                    pk__in=self.request.user.miembro.evento_set.all())
+        return Evento.objects.all()
 
 
 class EventoDetailView(LoginRequiredMixin,
@@ -56,18 +52,6 @@ class EventoDetailView(LoginRequiredMixin,
     model = Evento
     template_name = 'registros/evento_detail.html'
     permission_required = 'registros.view_eventos'
-
-    def get_object(self):
-        """
-        User can view this Evento only if this user attended such event
-        or if user has permissions to view all events.
-        """
-        object = super(EventoDetailView, self).get_object()
-        if (object in self.request.user.miembro.evento_set.all() or
-                MAYOR_ACCESO_GROUP in self.request.user.groups.all()):
-            return object
-        else:
-            raise PermissionDenied
 
     def post(self, *args, **kwargs):
         # archivo subido por el usuario
@@ -142,18 +126,7 @@ class MiembroDetailView(LoginRequiredMixin,
     login_url = LOGIN_URL
     model = Miembro
     template_name = 'registros/miembro_detail.html'
-    permission_required = 'registros.view_miembro'
-
-    def get_object(self):
-        """
-        Return Miembro object only if user is that Miembro.
-        """
-        object = super(MiembroDetailView, self).get_object()
-        if (object.pk == self.request.user.miembro.pk or
-                MAYOR_ACCESO_GROUP in self.request.user.groups.all()):
-            return object
-        else:
-            raise PermissionDenied
+    permission_required = 'registros.view_all_miembros'
 
 
 class LegadosView(LoginRequiredMixin, PermissionRequiredMixin, ListView):

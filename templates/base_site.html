@@ -22,9 +22,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                {% if perms.registros.view_miembro %}
                 <li><a href="{% url 'registros:miembro_detail' user.miembro.pk %}">Mi perfil</a></li>
-                {% endif %}
                 <li><a class="pull-right" href="{% url 'logout' %}">Logout</a></li>
             </ul>
         </div>

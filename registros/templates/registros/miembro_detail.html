@@ -13,15 +13,17 @@
 <hr>
 
 <ul>
+    <li><strong>País:</strong> {{ miembro.pais|default:"---" }}</li>
+    <li><strong>Número de Legendario:</strong> {{ miembro.numero_de_legendario|default_if_none:"---" }}</li>
+    {% if perms.registros.view_miembro_detail or user.miembro == miembro %}
     <li><strong>Fecha de nacimiento:</strong> {{ miembro.fecha_de_nacimiento|default_if_none:"---" }}</li>
     <li><strong>Correo electrónico:</strong> {{ miembro.correo }}</li>
     <li><strong>Teléfono:</strong> {{ miembro.telefono|default:"---" }}</li>
     <li><strong>Tipo de Sangre:</strong> {{ miembro.tipo_de_sangre|default:"---" }}</li>
     <li><strong>Estado Civíl:</strong> {{ miembro.estado_civil|default:"---" }}</li>
-    <li><strong>País:</strong> {{ miembro.pais|default:"---" }}</li>
-    <li><strong>Número de Legendario:</strong> {{ miembro.numero_de_legendario|default_if_none:"---" }}</li>
     <li><strong>Testimonio:</strong> {{ miembro.testimonio|default:"---" }}</li>
     <li><strong>Estatus:</strong> {{ miembro.estatus }}</li>
+    {% endif %}
 </ul>
 <hr>
 
