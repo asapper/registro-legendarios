@@ -16,6 +16,7 @@
     <li><strong>País:</strong> {{ miembro.pais|default:"---" }}</li>
     <li><strong>Número de Legendario:</strong> {{ miembro.numero_de_legendario|default_if_none:"---" }}</li>
     {% if perms.registros.view_miembro_detail or user.miembro == miembro %}
+    <li><strong>Congregación:</strong> {{ miembro.congregacion|default:"---" }}</li>
     <li><strong>Fecha de nacimiento:</strong> {{ miembro.fecha_de_nacimiento|default_if_none:"---" }}</li>
     <li><strong>Correo electrónico:</strong> {{ miembro.correo }}</li>
     <li><strong>Teléfono:</strong> {{ miembro.telefono|default:"---" }}</li>
