@@ -1,3 +1,5 @@
+import codecs, csv
+
 from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.mixins import (LoginRequiredMixin,
@@ -15,6 +17,7 @@ from django.views.generic.edit import FormView, UpdateView
 
 from .forms import MiembroForm
 from .models import Evento, Miembro, Legado
+from .utility import MainController
 
 LOGIN_URL = '/login/'
 MAYOR_ACCESO_GROUP = Group.objects.get(name='Mayor acceso usuario')
@@ -66,6 +69,20 @@ class EventoDetailView(LoginRequiredMixin,
         else:
             raise PermissionDenied
 
+    def post(self, *args, **kwargs):
+        # archivo subido por el usuario
+        miembros_file = self.request.FILES['archivo_miembros']
+        # lee csv y lo guarda en Dict
+        reader = csv.DictReader(codecs.iterdecode(miembros_file, "utf-8"),
+                fieldnames=MainController.FIELDNAMES_CSV)
+        # handle creation/assigning of miembros
+        object_pk = self.kwargs['pk']
+        MainController.nuevos_miembros_csv(reader, object_pk)
+        # add alert for user
+        messages.success(self.request, 'Miembros añadidos exitosamente')
+        return redirect(reverse('registros:evento_detail',
+                        kwargs={'pk': object_pk}))
+
 
 class MiembrosView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     login_url = LOGIN_URL
@@ -89,19 +106,8 @@ class NuevoMiembroView(SuccessMessageMixin, FormView):
         """
         Create User and Miembro based on data provided.
         """
-        user = User.objects.create_user(
-                username=form.cleaned_data['correo'],
-                password=form.cleaned_data['contraseña1'])
-        miembro = Miembro.objects.create(
-                nombre=form.cleaned_data['nombre'],
-                apellido=form.cleaned_data['apellido'],
-                correo=form.cleaned_data['correo'],
-                user=user)
-        miembro.save()
-        # get Legendario group
-        legendario_group = Group.objects.get(name='Legendario')
-        # add user to group
-        user.groups.add(legendario_group)
+        # handle creation of new member
+        user = MainController.create_new_miembro(form)
         # log user in
         login(self.request, user)
         return super(NuevoMiembroView, self).form_valid(form)
@@ -113,7 +119,7 @@ class MiembroUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
             'telefono', 'foto', 'tipo_de_sangre', 'estado_civil',
             'pais', 'testimonio']
     template_name_suffix = '_update_form'
-    success_message = 'El perfil de {} {} ha sido actualizado exitosamente.'
+    success_message = 'Tu perfil ha sido actualizado exitosamente.'
 
     def get_object(self):
         """
@@ -129,11 +135,6 @@ class MiembroUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         """Redirect back to Profile page."""
         return reverse('registros:miembro_detail',
                     kwargs={'pk': self.request.user.miembro.pk})
-
-    def get_success_message(self, cleaned_data):
-        return self.success_message.format(
-                cleaned_data['nombre'],
-                cleaned_data['apellido'])
 
 
 class MiembroDetailView(LoginRequiredMixin,

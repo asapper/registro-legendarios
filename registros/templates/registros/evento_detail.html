@@ -4,8 +4,17 @@
 <h1>{{ evento }}</h1>
 
 <img class="foto-badge" src="{{ evento.badge.url }}" />
-
 <hr>
+
+{% if perms.registros.add_miembros %}
+<form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="archivo_miembros" /><br>
+    <input class="btn btn-primary btn-sm" type="submit" value="Añadir miembros" />
+</form>
+<hr>
+{% endif %}
+
 {% if evento.participacion_set.count > 0 %}
     <h4>Miembros:</h4>
     {% for participacion in evento.participacion_set.all %}
