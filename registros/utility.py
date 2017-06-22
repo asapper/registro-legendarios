@@ -28,7 +28,7 @@ class MainController():
                 user=user)
         miembro.save()
         # assign basic group to new User
-        _assign_user_basic_group(user)
+        cls._assign_user_basic_group(user)
         return user
 
     @classmethod
