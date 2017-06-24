@@ -1,14 +1,16 @@
 {% extends 'base_site.html' %}
 
 {% block content %}
-<h1>{{ miembro }}</h1>
-
 {% if user.miembro == miembro %}
-<a class="btn btn-primary" href="{% url 'registros:miembro_update' user.miembro.pk %}">Editar</a>
+<a class="btn btn-primary pull-right" href="{% url 'registros:miembro_update' user.miembro.pk %}">Editar</a>
 {% endif %}
 
+<h1>{{ miembro }}</h1>
+
 {% if miembro.foto %}
-<img class="foto-miembro" src="{{ miembro.foto.url }}" />
+<div class="media">
+    <img class="media-object foto-miembro" src="{{ miembro.foto.url }}" />
+</div>
 {% endif %}
 <hr>
 

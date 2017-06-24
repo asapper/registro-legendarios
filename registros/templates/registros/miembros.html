@@ -2,13 +2,68 @@
 
 {% block content %}
 <h1>Listado de Miembros</h1>
+<hr>
 
+<form class="form-horizontal" action="" method="GET">
+    <div class="form-group">
+        <label for="search-nombre" class="col-sm-2 control-label">Nombre</label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control" name="nombre" id="search-nombre" placeholder="Nombre de Legendario" />
+        </div>
+        <label for="search-apellido" class="col-sm-2 control-label">Apellido</label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control" name="apellido" id="search-apellido" placeholder="Apellido de Legendario" />
+        </div>
+    </div><!-- .form-group -->
+    <div class="form-group">
+        <label for="search-num-lgnd" class="col-sm-2 control-label"># Legendario</label>
+        <div class="col-sm-3">
+            <input type="number" class="form-control" name="num-lgnd" id="search-num-lgnd" placeholder="Número de Legendario" />
+        </div>
+        <label for="search-pais" class="col-sm-2 control-label">País</label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control" name="pais" id="search-pais" placeholder="País" />
+        </div>
+    </div><!-- .form-group -->
+    <div class="form-group">
+        <label for="search-congregacion" class="col-sm-2 control-label">Congregación</label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control" name="congregacion" id="search-congregacion" placeholder="Congregación de Legendario" />
+        </div>
+        <label for="search-estatus" class="col-sm-2 control-label">Estatus</label>
+        <div class="radio col-sm-3">
+            <label class="radio-inline">
+                <input type="radio" name="estatus" id="estatus-activo" value="activo" checked="checked" />Activo
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="estatus" id="estatus-inactivo" value="inactivo" />Inactivo
+            </label>
+        </div>
+    </div><!-- .form-group -->
+    <button type="submit" class="btn btn-primary col-sm-offset-1">Buscar</button>
+</form>
+
+<hr>
 {% if latest_miembros_list %}
-<ul>
+<table class="table table-striped table-condensed table-hover table-responsive table-bordered">
+    <tr>
+        <th>Nombre</th>
+        <th># Legendario</th>
+        <th>País</th>
+        <th>Congregación</th>
+        <th>Estatus</th>
+    </tr>
     {% for miembro in latest_miembros_list %}
-    <li><a href="{% url 'registros:miembro_detail' miembro.id %}">{{ miembro }}</a></li>
+    <tr>
+        <td><a href="{% url 'registros:miembro_detail' miembro.id %}">{{ miembro }}</a></td>
+        <td>{{ miembro.numero_de_legendario }}</td>
+        <td>{{ miembro.pais }}</td>
+        <td>{{ miembro.congregacion }}</td>
+        <td>{{ miembro.estatus }}</td>
+    </tr>
     {% endfor %}
-</ul>
+</table>
+
 {% else %}
 <p>No hay miembros registrados.</p>
 {% endif %}

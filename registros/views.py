@@ -78,7 +78,26 @@ class MiembrosView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
 
     def get_queryset(self):
         """Return all Miembros."""
-        return Miembro.objects.all()
+        # store queryset
+        object_list = Miembro.objects.all()
+        # query if search performed
+        q_num_lgnd = self.request.GET.get('num-lgnd', None)
+        if q_num_lgnd is not None:
+            # conditions on query
+            conditions = dict()
+            conditions['nombre__icontains'] = self.request.GET.get('nombre')
+            conditions['apellido__icontains'] = \
+                self.request.GET.get('apellido')
+            conditions['pais__icontains'] = self.request.GET.get('pais')
+            conditions['congregacion__icontains'] = \
+                self.request.GET.get('congregacion')
+            conditions['estatus__icontains'] = self.request.GET.get('estatus')
+            # check numero de Legendario
+            if q_num_lgnd:
+                conditions['numero_de_legendario'] = int(q_num_lgnd)
+            # make query based on conditions
+            object_list = Miembro.objects.filter(**conditions)
+        return object_list
 
 
 class NuevoMiembroView(SuccessMessageMixin, FormView):
