@@ -39,7 +39,7 @@ class Miembro(models.Model):
     estado_civil = models.CharField(max_length=50, default="")
     pais = models.CharField(max_length=100, default="")
     congregacion = models.CharField(max_length=100, default="")
-    numero_de_legendario = models.PositiveIntegerField(null=True)
+    numero_de_legendario = models.PositiveIntegerField(unique=True)
     testimonio = models.TextField(default="")
     estatus = models.CharField(max_length=25, choices=OPCIONES_ESTATUS, default='activo')
 
