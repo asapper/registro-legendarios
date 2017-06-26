@@ -28,6 +28,16 @@
     <li><strong>Estatus:</strong> {{ miembro.estatus }}</li>
     {% endif %}
 </ul>
+
+{% if miembro.facebook_link %}
+<a href="{{ miembro.facebook_link }}" target="_blank"><i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i></a>
+{% endif %}
+{% if miembro.twitter_link %}
+<a href="{{ miembro.twitter_link }}" target="_blank"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a>
+{% endif %}
+{% if miembro.instagram_link %}
+<a href="{{ miembro.instagram_link }}" target="_blank"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
+{% endif %}
 <hr>
 
 <h4>Badges</h4>

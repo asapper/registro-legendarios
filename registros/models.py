@@ -42,6 +42,10 @@ class Miembro(models.Model):
     numero_de_legendario = models.PositiveIntegerField(unique=True)
     testimonio = models.TextField(default="")
     estatus = models.CharField(max_length=25, choices=OPCIONES_ESTATUS, default='activo')
+    # links for social networks
+    facebook_link = models.URLField(default="", blank=True)
+    instagram_link = models.URLField(default="", blank=True)
+    twitter_link = models.URLField(default="", blank=True)
 
     def __str__(self):
         return "{} {}".format(self.nombre, self.apellido)

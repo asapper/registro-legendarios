@@ -124,7 +124,8 @@ class MiembroUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Miembro
     fields = ['nombre', 'apellido', 'fecha_de_nacimiento', 'correo',
               'telefono', 'foto', 'tipo_de_sangre', 'estado_civil',
-              'pais', 'testimonio', 'congregacion']
+              'pais', 'testimonio', 'congregacion', 'facebook_link',
+              'instagram_link', 'twitter_link']
     template_name_suffix = '_update_form'
     success_message = 'Tu perfil ha sido actualizado exitosamente.'
 
