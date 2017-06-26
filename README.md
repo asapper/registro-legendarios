@@ -9,16 +9,18 @@ Para correr este proyecto localmente sigue las siguientes instrucciones.
 3. (Recomendado) Crea un *virtual environment* para este proyecto.
 4. Instala los paquetes requeridos por este proyecto, usando el siguiente comando:
 
-`pip install -r requirements.txt`
+```pip install -r requirements.txt```
 
 **NOTA:** el archivo *requirements.txt* es parte de este proyecto.
 
 5. Crea un usuario y una base de datos en Postgresql usando los siguientes comandos:
 
-`CREATE USER <name>`
+```CREATE USER <name>```
+
 Si este comando es ejecutado correctamente deberías ver una respuesta que dice `CREATE ROLE` en tu Terminal.
 
-`CREATE DATABASE <database_name> OWNER <name>`
+```CREATE DATABASE <database_name> OWNER <name>```
+
 En <name> usa el nombre que usaste para crear un usuario anteriormente. Si este comando es ejecutado correctamente deberías ver una respuesta que dice `CREATE DATABASE` en tu Terminal.
 
 6. Modifica la configuración de la base de datos en el archivo *Legendarios/settings.py*. Cambia los siguientes datos a los datos de la basa de datos creada anteriormente:
@@ -38,13 +40,13 @@ DATABASES = {
 
 7. Inicializa tu base de datos usando el siguiente comando:
 
-`python manage.py migrate`
+```python manage.py migrate```
 
 **NOTA:** al momento de escritura de este archivo, el proyecto usa Postgresql como base de datos para development.
 
 8. Corre el proyecto usando el siguiente comando:
 
-`python manage.py runserver`
+```python manage.py runserver```
 
 Ve a `localhost:8000` para ver el proyecto corriendo.
 
@@ -54,7 +56,7 @@ Para usar el programa necesitarás hacer un par de cosas más.
 
 1. Crear un super usuario:
 
-`python manage.py createsuperuser`
+```python manage.py createsuperuser```
 
 **NOTA:** este superusuario tiene acceso al dashboard de Administrador en `localhost:8000/admin`, pero no tiene acceso al registro de Legendarios.
 
