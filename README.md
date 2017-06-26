@@ -23,7 +23,8 @@ En <name> usa el nombre que usaste para crear un usuario anteriormente. Si este 
 
 6. Modifica la configuración de la base de datos en el archivo *Legendarios/settings.py*. Cambia los siguientes datos a los datos de la basa de datos creada anteriormente:
 
-`DATABASES = {
+```
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': '<database_name>',
@@ -33,7 +34,7 @@ En <name> usa el nombre que usaste para crear un usuario anteriormente. Si este 
         'PORT': '',
     }
 }
-`
+```
 
 7. Inicializa tu base de datos usando el siguiente comando:
 
