@@ -5,7 +5,7 @@ Proyecto hecho para Casa de Dios. Mantiene el registro de todos los Legendarios.
 Para correr este proyecto localmente sigue las siguientes instrucciones.
 
 1.  Clona este proyecto localmente.
-2. Asegúrate de tener Python instalado.
+2. Asegúrate de tener Python >=3.6-32 instalado.
 3. (Recomendado) Crea un *virtual environment* para este proyecto.
 4. Instala los paquetes requeridos por este proyecto, usando el siguiente comando:
 
