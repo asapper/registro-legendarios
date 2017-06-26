@@ -4,14 +4,11 @@ import csv
 from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.mixins import (LoginRequiredMixin,
-                                        UserPassesTestMixin,
                                         PermissionRequiredMixin)
-from django.contrib.auth.models import Group, User
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django.views.generic import DetailView, ListView
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView, UpdateView
@@ -21,7 +18,6 @@ from .models import Evento, Miembro, Legado
 from .utility import MainController
 
 LOGIN_URL = '/login/'
-MAYOR_ACCESO_GROUP = Group.objects.get(name='Mayor acceso usuario')
 
 
 def home_view(request):
