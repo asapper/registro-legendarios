@@ -1,0 +1,12 @@
+*/*.pyc
+db.sqlite3
+.DS_Store
+*/.DS_Store
+bin
+include
+lib
+pip-selfcheck.json
+test_data
+README.md
+local_settings.py
+*/local_settings.py*

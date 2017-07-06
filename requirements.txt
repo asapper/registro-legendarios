@@ -3,4 +3,3 @@ olefile==0.44
 pep8==1.7.0
 Pillow==4.1.1
 psycopg2==2.7.1
-pytz==2017.2

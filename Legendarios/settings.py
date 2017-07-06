@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '*gw9cgmihj8y1kohlqw#*@3*_=1#w4@zpkrw6&l+s8u26a$&xy'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -76,12 +76,11 @@ WSGI_APPLICATION = 'Legendarios.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'registros_legendarios',
-        'USER': 'legendarios',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432,
     }
 }
 
@@ -128,3 +127,10 @@ MEDIA_URL = '/media/'
 
 # Login
 LOGIN_REDIRECT_URL = '/registros/home'
+
+
+# Local dev settings
+try:
+    from .local_settings import *
+except ImportError:
+    pass

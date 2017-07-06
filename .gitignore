@@ -8,3 +8,4 @@ lib/
 media/
 pip-selfcheck.json
 test_data
+**/local_settings.py

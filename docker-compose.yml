@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+    db:
+        image: postgres
+        volumes:
+            - ~/data/postgresql-data:/var/lib/postgresql/data
+
+    web:
+        build: .
+        command: ['./startup_cmds.sh']
+        volumes:
+            - .:/code
+        ports:
+            - "8000:8000"
+        links:
+            - db:db
+        depends_on:
+            - db
