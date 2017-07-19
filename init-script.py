@@ -1,7 +1,12 @@
-from django.contrib.auth.models import Group, Permission
+from django.contrib.auth.models import Group, Permission, User
 from django.contrib.contenttypes.models import ContentType
 
 from registros.models import Miembro, Evento, Participacion, Legado
+
+# datos para creacion de super-usuario
+USERNAME = 'legendario_1'
+EMAIL = 'info@life.org'
+PASSWD = 'legendarios_gt1'
 
 # get or create groups
 mayor_group, mayor_created = Group.objects.get_or_create(name='Mayor acceso usuario')
@@ -64,3 +69,19 @@ if mayor_created is True or lgnd_created is True or lider_created is True:
     ## Legendario
     lgnd_group.permissions.add(evento_perm_view)
     lgnd_group.permissions.add(miembro_perm_view_all)
+
+
+# crear super-usuario
+if User.objects.filter(username=USERNAME).count() == 0:
+    user = User.objects.create_superuser(USERNAME, EMAIL, PASSWD);
+    miembro = Miembro.objects.create(
+        user=user,
+        nombre=USERNAME,
+        apellido=USERNAME,
+        correo=EMAIL,
+        numero_de_legendario=100000)
+    # save new miembro
+    miembro.save()
+    print('Superuser created.');
+else:
+    print('Superuser creation skipped.');
