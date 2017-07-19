@@ -2,9 +2,28 @@
 Proyecto hecho para Casa de Dios. Mantiene el registro de todos los Legendarios.
 
 ## Instrucciones de Uso
+
+### Uso en Docker
+Para correr este proyecto en contenedores de Docker sigue las siguientes intrucciones.
+
+1. Clona este proyecto.
+2. Inicia Docker en tu ordenador.
+3. Corre el siguiente comando para iniciar los contenedores:
+
+```./startup_scipt.sh```
+
+Esto habrá creado el proyecto. Puedes accederlo en `localhost:8000`. Este script ha creado un super-usuario en la base de datos. Los datos de ese usuario son:
+
+**Usuario:** legendario_1
+
+**Contraseña:** legendarios_gt1
+
+Con estos datos puedes acceder la página de administracion (`localhost:8000/admin`) y la página de registros (`localhost:8000/registros`).
+
+### Uso local
 Para correr este proyecto localmente sigue las siguientes instrucciones.
 
-1.  Clona este proyecto localmente.
+1. Clona este proyecto localmente.
 2. Asegúrate de tener Python >=3.6-32 instalado.
 3. (Recomendado) Crea un *virtual environment* para este proyecto.
 4. Instala los paquetes requeridos por este proyecto, usando el siguiente comando:
