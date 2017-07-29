@@ -20,6 +20,18 @@ Esto habrá creado el proyecto. Puedes accederlo en `localhost:8000`. Este scrip
 
 Con estos datos puedes acceder la página de administracion (`localhost:8000/admin`) y la página de registros (`localhost:8000/registros`).
 
+
+**NOTA:** existen varios campos que debes configurar de acuerdo a tu servidor. A continuación encontrarás una lista con información de configuración que debes hacer.
+
+1. La configuración de tu base de datos debes hacerla en el archivo *.env*. Allí debes cambiar la información necesaria para tu 'Name', 'User', 'Host', 'Port' de la base de datos.
+
+2. Debes cambiar los hosts que aceptes en tu servidor en el archivo *Legendarios/settings.py*. En ALLOWED_HOSTS debes incluir los URLs de tu página que accesa este proyecto. Puedes encontrar más información acerca de este tema [aquí](https://docs.djangoproject.com/en/1.11/ref/settings/#std:setting-ALLOWED_HOSTS).
+
+3. Debes cambiar la variable SECURE_HSTS_SECONDS en el archivo *Legendarios/settings.py*. Para cambiar esta variable debes hacer pruebas en base a tu servidor. Puedes encontrar más información acerca de este tema [aquí](https://docs.djangoproject.com/en/1.11/ref/settings/#std:setting-SECURE_HSTS_SECONDS).
+
+4. Debes cambiar la variable STATIC_ROOT en el archivo *Legendarios/settings.py*. Aquí debes especificar el path en tu servidor donde tus archivos serán guardados. [Sigue las instrucciones para hacer esto](https://docs.djangoproject.com/en/1.11/howto/static-files/#deployment). Para una configuración más extensiva, [sigue estas instrucciones](https://docs.djangoproject.com/en/1.11/howto/static-files/deployment/).
+
+
 ### Uso local
 Para correr este proyecto localmente sigue las siguientes instrucciones.
 
@@ -42,7 +54,7 @@ Si este comando es ejecutado correctamente deberías ver una respuesta que dice 
 
 En <name> usa el nombre que usaste para crear un usuario anteriormente. Si este comando es ejecutado correctamente deberías ver una respuesta que dice `CREATE DATABASE` en tu Terminal.
 
-6. Modifica la configuración de la base de datos en el archivo *Legendarios/settings.py*. Cambia los siguientes datos a los datos de la basa de datos creada anteriormente:
+6. Modifica la configuración de la base de datos en el archivo *Legendarios/local_settings.py*. Cambia los siguientes datos a los datos de la basa de datos creada anteriormente:
 
 ```
 DATABASES = {
@@ -67,7 +79,7 @@ DATABASES = {
 
 ```python manage.py runserver```
 
-Ve a `localhost:8000` para ver el proyecto corriendo.
+Ve a `127.0.0.1:8000/registros` para ver el proyecto corriendo.
 
 
 ## Usando el programa
