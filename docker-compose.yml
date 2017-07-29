@@ -9,6 +9,8 @@ services:
     web:
         build: .
         command: ['./startup_cmds.sh']
+        env_file:
+            - .env
         volumes:
             - .:/code
         ports:

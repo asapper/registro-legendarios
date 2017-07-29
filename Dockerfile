@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:2.7
 ENV PYTHONUNBUFFERED 1
 # directory to store code
 RUN mkdir /code
@@ -12,7 +12,3 @@ ADD requirements.txt /code/
 RUN pip install -r requirements.txt
 # copy over code
 COPY . /code/
-# migrate db
-RUN python manage.py migrate
-# init Groups and Permissions
-RUN python manage.py shell < init-script.py

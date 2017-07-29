@@ -18,7 +18,6 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 
 from django.conf import settings
-from django.conf.urls.static import static
 
 from . import views
 
@@ -28,4 +27,4 @@ urlpatterns = [
     url(r'^registros/', include('registros.urls')),
     url(r'^$', views.index, name='index'),
     url('^', include('django.contrib.auth.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
