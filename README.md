@@ -75,7 +75,17 @@ DATABASES = {
 
 **NOTA:** al momento de escritura de este archivo, el proyecto usa Postgresql como base de datos para development.
 
-8. Corre el proyecto usando el siguiente comando:
+8. Ejecuta el siguiente comando para crear diferentes permisos y un superusuario:
+
+```python manage.py shell < init_script.py```
+
+Este script ha creado un super-usuario en la base de datos. Los datos de ese usuario son:
+
+**Usuario:** legendario_1
+
+**Contraseña:** legendarios_gt1
+
+9. Corre el proyecto usando el siguiente comando:
 
 ```python manage.py runserver```
 
@@ -83,7 +93,7 @@ Ve a `127.0.0.1:8000/registros` para ver el proyecto corriendo.
 
 
 ## Usando el programa
-Para usar el programa necesitarás hacer un par de cosas más.
+Usando el programa puedes hacer un par de cosas más.
 
 1. Crear un super usuario:
 
