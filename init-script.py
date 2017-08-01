@@ -7,6 +7,8 @@ from registros.models import Miembro, Evento, Participacion, Legado
 USERNAME = 'legendario_1'
 EMAIL = 'info@life.org'
 PASSWD = 'legendarios_gt1'
+FIRST_NAME = 'Nombre_legendario'
+LAST_NAME = 'Apellido_legendario'
 
 # get or create groups
 mayor_group, mayor_created = Group.objects.get_or_create(name='Mayor acceso usuario')
@@ -76,8 +78,8 @@ if User.objects.filter(username=USERNAME).count() == 0:
     user = User.objects.create_superuser(USERNAME, EMAIL, PASSWD);
     miembro = Miembro.objects.create(
         user=user,
-        nombre=USERNAME,
-        apellido=USERNAME,
+        nombre=FIRST_NAME,
+        apellido=LAST_NAME,
         correo=EMAIL,
         numero_de_legendario=100000)
     # save new miembro

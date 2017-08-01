@@ -8,3 +8,5 @@ lib/
 media/
 pip-selfcheck.json
 test_data
+static/
+.Python

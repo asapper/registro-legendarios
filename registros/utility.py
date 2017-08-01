@@ -20,7 +20,7 @@ class MainController():
     def create_new_miembro(cls, form):
         user = User.objects.create_user(
                 username=form.cleaned_data['correo'],
-                password=form.cleaned_data['contraseña1'])
+                password=form.cleaned_data['contrasena1'])
         miembro = Miembro.objects.create(
                 nombre=form.cleaned_data['nombre'],
                 apellido=form.cleaned_data['apellido'],

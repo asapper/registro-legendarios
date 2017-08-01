@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.conf.urls import url
+from django.conf import settings
+from django.conf.urls.static import static
 
 from . import views
 
@@ -27,3 +29,6 @@ urlpatterns = [
     # ex: /registros/legados/1/
     url(r'^legados/(?P<pk>[0-9]+)/$', views.LegadoDetailView.as_view(), name='legado_detail'),
 ]
+
+if settings.DEBUG: 
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

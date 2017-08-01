@@ -33,7 +33,7 @@ class Miembro(models.Model):
     fecha_de_nacimiento = models.DateField(null=True)  # not required upon registration
     correo = models.EmailField(unique=True)
     telefono = models.CharField(max_length=25, default="")
-    foto = models.ImageField(upload_to="miembros/", null=True)
+    foto = models.ImageField(upload_to="miembros/", null=True, blank=True)
     tipo_de_sangre = models.CharField(max_length=25, default="")
     estado_civil = models.CharField(max_length=50, default="")
     pais = models.CharField(max_length=100, default="")
