@@ -2,17 +2,20 @@ version: '3'
 
 services:
     db:
-        image: postgres
+        build: Legendarios-db
         volumes:
             - ~/data/postgresql-data:/var/lib/postgresql/data
+        ports:
+            - "5432:5432"
 
     web:
-        build: .
+        build:
+            context: Legendarios-web
         command: ['./startup_cmds.sh']
         env_file:
             - .env
         volumes:
-            - .:/code
+            - ./Legendarios-web/registros:/code/registros
         ports:
             - "8000:8000"
         links:
